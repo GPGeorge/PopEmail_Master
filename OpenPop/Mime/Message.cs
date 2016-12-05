@@ -8,27 +8,29 @@ using OpenPop.Mime.Traverse;
 
 namespace OpenPop.Mime
 {
-	/// <summary>
-	/// This is the root of the email tree structure.<br/>
-	/// <see cref="Mime.MessagePart"/> for a description about the structure.<br/>
-	/// <br/>
-	/// A Message (this class) contains the headers of an email message such as:
-	/// <code>
-	///  - To
-	///  - From
-	///  - Subject
-	///  - Content-Type
-	///  - Message-ID
-	/// </code>
-	/// which are located in the <see cref="Headers"/> property.<br/>
-	/// <br/>
-	/// Use the <see cref="Message.MessagePart"/> property to find the actual content of the email message.
-	/// </summary>
-	/// <example>
-	/// Examples are available on the <a href="http://hpop.sourceforge.net/">project homepage</a>.
-	/// </example>
-	public class Message
-	{
+    /// <summary>
+    /// This is the root of the email tree structure.<br/>
+    /// <see cref="Mime.MessagePart"/> for a description about the structure.<br/>
+    /// <br/>
+    /// A Message (this class) contains the headers of an email message such as:
+    /// <code>
+    ///  - To
+    ///  - From
+    ///  - Subject
+    ///  - Content-Type
+    ///  - Message-ID
+    /// </code>
+    /// which are located in the <see cref="Headers"/> property.<br/>
+    /// <br/>
+    /// Use the <see cref="Message.MessagePart"/> property to find the actual content of the email message.
+    /// </summary>
+    /// <example>
+    /// Examples are available on the <a href="http://hpop.sourceforge.net/">project homepage</a>.
+    /// </example>
+    /// 
+ 
+    public class Message
+	{   
 		#region Public properties
 		/// <summary>
 		/// Headers of the Message.
@@ -190,8 +192,13 @@ namespace OpenPop.Mime
 			if(Headers.From != null && Headers.From.HasValidMailAddress)
 				message.From = Headers.From.MailAddress;
 
-			if (Headers.ReplyTo != null && Headers.ReplyTo.HasValidMailAddress)
-				message.ReplyTo = Headers.ReplyTo.MailAddress;
+            //GPC 2016_12_05 Modified template to use .Net 4.5.2 compatible ReplyToList 
+
+            string strreplytolist = Headers.ReplyTo.MailAddress.ToString();
+
+            if (Headers.ReplyTo != null && Headers.ReplyTo.HasValidMailAddress)
+            message.ReplyToList.Add(strreplytolist);
+            //message.ReplyTo = Headers.ReplyTo.MailAddress;
 
 			if(Headers.Sender != null && Headers.Sender.HasValidMailAddress)
 				message.Sender = Headers.Sender.MailAddress;
