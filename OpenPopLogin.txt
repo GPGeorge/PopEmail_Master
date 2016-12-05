@@ -1,5 +1,5 @@
-outlook.office365.com
-995
-True
-referrals@appliedabc.com
-Kimblueberry613
+Your Email Server Name Goes Here
+Your Port Number Goes Here
+Use SSL?
+Your Log In Email Goes Here
+Your Password Goes Here
