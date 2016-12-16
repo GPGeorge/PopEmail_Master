@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenPopUnitTests", "OpenPOP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenPopExamples", "OpenPopExamples\OpenPopExamples.csproj", "{7403393B-749C-49D5-A20A-903BDA428D44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenPopTestNoUI", "OpenPopNoUI\OpenPopTestNoUI.csproj", "{D648B85D-A581-4454-9E73-7A32FB6F19E5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +32,6 @@ Global
 		{7403393B-749C-49D5-A20A-903BDA428D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7403393B-749C-49D5-A20A-903BDA428D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7403393B-749C-49D5-A20A-903BDA428D44}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D648B85D-A581-4454-9E73-7A32FB6F19E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D648B85D-A581-4454-9E73-7A32FB6F19E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D648B85D-A581-4454-9E73-7A32FB6F19E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D648B85D-A581-4454-9E73-7A32FB6F19E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

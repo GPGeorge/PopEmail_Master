@@ -8,14 +8,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ApplicationIcon>Contact.ico</ApplicationIcon>
-    <AssemblyName>OpenPop.NET Test Application</AssemblyName>
+    <AssemblyName>OpenPop.NET TestNoUI Application</AssemblyName>
     <AssemblyOriginatorKeyFile>../OpenPopKeyFile.pfx</AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>OpenPop.TestApplication</RootNamespace>
+    <RootNamespace>OpenPop.TestNoUIApplication</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <OldToolsVersion>3.5</OldToolsVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -137,9 +137,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="NoUIForm.cs" />
     <Content Include="Contact.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -165,13 +163,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TestForm.resx">
-      <DependentUpon>TestForm.cs</DependentUpon>
+    <EmbeddedResource Include="NoUIForm.resx">
+      <DependentUpon>NoUIForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="OpenPopTestNoUI_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

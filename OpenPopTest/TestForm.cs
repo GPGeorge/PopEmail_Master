@@ -76,20 +76,29 @@ namespace OpenPop.TestApplication
 
 			// This is only for faster debugging purposes
 			// We will try to load in default values for the hostname, port, ssl, username and password from a file
-			string myDocs = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			string file = Path.Combine(myDocs, "OpenPopLogin.txt");
-			if (File.Exists(file))
-			{
-				using (StreamReader reader = new StreamReader(File.OpenRead(file)))
-				{
-					// This describes how the OpenPOPLogin.txt file should look like
-					popServerTextBox.Text = reader.ReadLine(); // Hostname
-					portTextBox.Text = reader.ReadLine(); // Port
-					useSslCheckBox.Checked = bool.Parse(reader.ReadLine() ?? "true"); // Whether to use SSL or not
-					loginTextBox.Text = reader.ReadLine(); // Username
-					passwordTextBox.Text = reader.ReadLine(); // Password
-				}
-			}
+			//string myDocs = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			//string file = Path.Combine(myDocs, "OpenPopLogin.txt");
+			//if (File.Exists(file))
+			//{
+			//	using (StreamReader reader = new StreamReader(File.OpenRead(file)))
+			//	{
+   //                 // 
+   //                 //GPC Modified to read values into variables as well as the textboxes on the form 2016-12-06
+   //                 //This describes how the OpenPOPLogin.txt file should look like
+   //                 //
+   //                 string popServer =  reader.ReadLine(); // Hostname
+   //                 popServerTextBox.Text = popServer;
+   //                 string porttoUse = reader.ReadLine(); // Port
+   //                 portTextBox.Text = porttoUse; 
+   //                 bool useSsl = bool.Parse(reader.ReadLine() ?? "true"); // Whether to use SSL or not
+   //                 useSslCheckBox.Checked = useSsl; 
+   //                 string longinID = reader.ReadLine(); // Username
+   //                 loginTextBox.Text = longinID;
+   //                 string password = reader.ReadLine(); // Password
+   //                 passwordTextBox.Text = password;
+
+   //             }
+			//}
 		}
 
 		#region Windows Form Designer generated code
@@ -461,10 +470,14 @@ namespace OpenPop.TestApplication
 		[STAThread]
 		private static void Main()
 		{
-			Application.Run(new TestForm());
-		}
+            Application.Run(new TestForm());
 
-		private void ReceiveMails()
+
+
+        }
+
+        //try making this a static void gpc 2016-12-7
+		private  void ReceiveMails()
 		{
 			// Disable buttons while working
 			connectAndRetrieveButton.Enabled = false;
@@ -475,8 +488,39 @@ namespace OpenPop.TestApplication
 			{
 				if (pop3Client.Connected)
 					pop3Client.Disconnect();
-				pop3Client.Connect(popServerTextBox.Text, int.Parse(portTextBox.Text), useSslCheckBox.Checked);
-				pop3Client.Authenticate(loginTextBox.Text, passwordTextBox.Text);
+
+                string myDocs = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                string file = Path.Combine(myDocs, "OpenPopLogin.txt");
+                if (File.Exists(file))
+                {
+                    using (StreamReader reader = new StreamReader(File.OpenRead(file)))
+                    {
+                        // 
+                        //GPC Modified to read values into variables as well as the textboxes on the form 2016-12-06
+                        //This describes how the OpenPOPLogin.txt file should look like
+                        //
+                        string popServer = reader.ReadLine(); // Hostname
+                        popServerTextBox.Text = popServer;
+                        string porttoUse = reader.ReadLine(); // Port
+                        portTextBox.Text = porttoUse;
+                        bool useSsl = bool.Parse(reader.ReadLine() ?? "true"); // Whether to use SSL or not
+                        useSslCheckBox.Checked = useSsl;
+                        string longinID = reader.ReadLine(); // Username
+                        loginTextBox.Text = longinID;
+                        string password = reader.ReadLine(); // Password
+                        passwordTextBox.Text = password;
+
+                        //}
+                        //}
+
+                        //GPC Edited to use variables read from file, not from form controls 2016-12-06
+                        pop3Client.Connect(popServer, int.Parse(porttoUse), useSsl);
+                        pop3Client.Authenticate(longinID, password);
+                    }
+                }
+
+    //            pop3Client.Connect(popServerTextBox.Text, int.Parse(portTextBox.Text), useSslCheckBox.Checked);
+				//pop3Client.Authenticate(loginTextBox.Text, passwordTextBox.Text);
 				int count = pop3Client.GetMessageCount();
 				totalMessagesTextBox.Text = count.ToString();
 				messageTextBox.Text = "";
